@@ -1,4 +1,5 @@
-import { Github, Linkedin, Twitter, Mail } from "lucide-react"
+import { Mail } from "lucide-react"
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
 import { createClient } from "@/lib/supabase/server"
 import type { About } from "@/lib/types"
 
@@ -64,7 +65,7 @@ export default async function AboutPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-colors"
               >
-                <Github className="size-4" />
+                <FaGithub className="size-4" />
                 GitHub
               </a>
             )}
@@ -75,7 +76,7 @@ export default async function AboutPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-colors"
               >
-                <Linkedin className="size-4" />
+                <FaLinkedin className="size-4" />
                 LinkedIn
               </a>
             )}
@@ -86,7 +87,7 @@ export default async function AboutPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-colors"
               >
-                <Twitter className="size-4" />
+                <FaTwitter className="size-4" />
                 Twitter
               </a>
             )}
