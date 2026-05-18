@@ -14,10 +14,14 @@ export default async function CuriosityPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-16">
-      <h1 className="text-4xl font-bold tracking-tight text-foreground">Curiosity Made Me Ask</h1>
+      <h1 className="text-4xl font-bold tracking-tight text-foreground">
+        Curiosity Made Me Ask
+      </h1>
       <p className="mt-4 text-lg text-muted-foreground">
-        A collection of articles, projects, and topics that caught my attention. 
-        Exploring ideas through writing and learning in public.
+        A place for the random questions that sent me down a rabbit hole: how
+        things work, why they break, and what makes certain systems feel
+        beautifully designed. Mostly backend, systems, and tech, with the
+        occasional detour into whatever else catches my attention.
       </p>
 
       {blogs.length === 0 ? (
@@ -26,7 +30,7 @@ export default async function CuriosityPage() {
         </p>
       ) : (
         <div className="mt-12 flex flex-col gap-6">
-          {blogs.map((blog) => (
+          {blogs.map(blog => (
             <a
               key={blog.id}
               href={blog.external_url}
@@ -69,7 +73,7 @@ export default async function CuriosityPage() {
                   </span>
                   {blog.tags.length > 0 && (
                     <div className="flex gap-2">
-                      {blog.tags.slice(0, 3).map((tag) => (
+                      {blog.tags.slice(0, 3).map(tag => (
                         <span
                           key={tag}
                           className="rounded-full bg-secondary px-2 py-0.5 text-xs text-secondary-foreground"
@@ -86,5 +90,5 @@ export default async function CuriosityPage() {
         </div>
       )}
     </div>
-  )
+  );
 }

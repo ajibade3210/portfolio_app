@@ -38,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-background" suppressHydrationWarning>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased selection:bg-purple-600 selection:text-white">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

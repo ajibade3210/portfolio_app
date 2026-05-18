@@ -24,7 +24,7 @@ export function Navigation() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-sm">
       <nav className="mx-auto flex h-16 max-w-4xl items-center justify-between px-4">
         <Link href="/" className="font-semibold text-foreground hover:text-foreground/80 transition-colors">
-          Portfolio
+          {/* Portfoliox */}
         </Link>
 
         {/* Desktop Navigation */}

@@ -7,8 +7,8 @@ export default async function HomePage() {
   const supabase = await createClient()
   
   const [projectsResult, blogsResult, aboutResult] = await Promise.all([
-    supabase.from("projects").select("*").eq("featured", true).limit(3).order("created_at", { ascending: false }),
-    supabase.from("blogs").select("*").limit(3).order("published_at", { ascending: false }),
+    supabase.from("projects").select("*").eq("featured", true).limit(4).order("created_at", { ascending: false }),
+    supabase.from("blogs").select("*").limit(4).order("published_at", { ascending: false }),
     supabase.from("about").select("*").limit(1).single()
   ])
 
@@ -24,9 +24,10 @@ export default async function HomePage() {
           {about?.name || "Hello, I'm a Developer"}
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-          I build digital products and explore the intersection of design and
-          technology. Welcome to my corner of the internet where I share my work
-          and curiosities.
+          Building things, following curiosity, and occasionally getting
+          completely sidetracked by questions I need to understand for no
+          practical reason. Usually somewhere between systems, design,
+          technology, and whatever else happens to spark my interest at 2am.
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
           <Link
@@ -49,7 +50,7 @@ export default async function HomePage() {
       {featuredProjects.length > 0 && (
         <section className="mb-16">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-semibold text-foreground">
+            <h2 className="text-2xl font-bold text-foreground">
               Featured Projects
             </h2>
             <Link
@@ -92,7 +93,7 @@ export default async function HomePage() {
       {recentBlogs.length > 0 && (
         <section>
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-semibold text-foreground">
+            <h2 className="text-2xl font-bold text-foreground">
               Recent Curiosities
             </h2>
             <Link
