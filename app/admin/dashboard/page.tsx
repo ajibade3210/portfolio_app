@@ -1,31 +1,37 @@
-import { redirect } from "next/navigation"
-import { isAuthenticated, logoutAction } from "@/lib/auth"
-import { createClient } from "@/lib/supabase/server"
-import type { Project, Blog, About } from "@/lib/types"
-import { AdminTabs } from "./admin-tabs"
+import { redirect } from "next/navigation";
+import { isAuthenticated, logoutAction } from "@/lib/auth";
+import { createClient } from "@/lib/supabase/server";
+import type { Project, Blog, About } from "@/lib/types";
+import { AdminTabs } from "./admin-tabs";
 
 export const metadata = {
   title: "Dashboard | Admin",
-}
+};
 
 export default async function DashboardPage() {
-  const authenticated = await isAuthenticated()
-  
+  const authenticated = await isAuthenticated();
+
   if (!authenticated) {
-    redirect("/admin")
+    redirect("/admin");
   }
 
-  const supabase = await createClient()
-  
-  const [projectsResult, blogsResult, aboutResult] = await Promise.all([
-    supabase.from("projects").select("*").order("created_at", { ascending: false }),
-    supabase.from("blogs").select("*").order("published_at", { ascending: false }),
-    supabase.from("about").select("*").limit(1).single(),
-  ])
+  const supabase = await createClient();
 
-  const projects = (projectsResult.data || []) as Project[]
-  const blogs = (blogsResult.data || []) as Blog[]
-  const about = aboutResult.data as About | null
+  const [projectsResult, blogsResult, aboutResult] = await Promise.all([
+    supabase
+      .from("projects")
+      .select("*")
+      .order("created_at", { ascending: false }),
+    supabase
+      .from("blogs")
+      .select("*")
+      .order("published_at", { ascending: false }),
+    supabase.from("about").select("*").limit(1).single(),
+  ]);
+
+  const projects = (projectsResult.data || []) as Project[];
+  const blogs = (blogsResult.data || []) as Blog[];
+  const about = aboutResult.data as About | null;
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
@@ -43,5 +49,5 @@ export default async function DashboardPage() {
 
       <AdminTabs projects={projects} blogs={blogs} about={about} />
     </div>
-  )
+  );
 }
