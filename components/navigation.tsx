@@ -7,7 +7,8 @@ import { ThemeToggle } from "./theme-toggle"
 import { Menu, X } from "lucide-react"
 import { useState } from "react"
 
-const RESUME_URL = "https://drive.google.com/file/d/1fb7u6gOapfb-LgHRXVxLdJdGHpgq1BM-/view?usp=sharing"
+const RESUME_URL =
+  "https://res.cloudinary.com/dbyxa5mev/image/upload/v1779158727/001-Latest_Olaolu.Ajibade_Resume_hgpass.pdf";
 
 const navItems = [
   { href: "/", label: "Home" },
