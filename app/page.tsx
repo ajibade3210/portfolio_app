@@ -86,7 +86,7 @@ export default async function HomePage() {
                   {project.description}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {project.stack.slice(0, 3).map(tech => (
+                  {(project.stack || []).slice(0, 3).map(tech => (
                     <span
                       key={tech}
                       className="rounded-full bg-secondary px-2.5 py-0.5 text-xs text-secondary-foreground"
@@ -135,7 +135,7 @@ export default async function HomePage() {
                     <span className="text-xs text-muted-foreground capitalize">
                       {blog.platform}
                     </span>
-                    {blog.tags.slice(0, 2).map(tag => (
+                    {(blog.tags || []).slice(0, 2).map(tag => (
                       <span
                         key={tag}
                         className="rounded-full bg-secondary px-2 py-0.5 text-xs text-secondary-foreground"

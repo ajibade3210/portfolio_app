@@ -79,14 +79,17 @@ export default async function CuriosityPage() {
                   <span className="text-xs text-muted-foreground capitalize">
                     {blog.platform}
                   </span>
-                  <span className="text-xs text-muted-foreground" suppressHydrationWarning>
+                  <span
+                    className="text-xs text-muted-foreground"
+                    suppressHydrationWarning
+                  >
                     {new Date(blog.published_at).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
                       year: "numeric",
                     })}
                   </span>
-                  {blog.tags.length > 0 && (
+                  {blog.tags && blog.tags.length > 0 && (
                     <div className="flex gap-2">
                       {blog.tags.slice(0, 3).map(tag => (
                         <span

@@ -1,10 +1,10 @@
-import { Mail } from "lucide-react"
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
-import { createPublicClient } from "@/lib/supabase/public"
+import { Mail } from "lucide-react";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { createPublicClient } from "@/lib/supabase/public";
 
 export const revalidate = 3600;
 
-import type { About } from "@/lib/types"
+import type { About } from "@/lib/types";
 
 export const metadata = {
   title: "About | Portfolio",
@@ -18,22 +18,25 @@ export const metadata = {
     title: "About | Portfolio",
     description: "Learn more about me and my journey",
   },
-}
+};
 
 export default async function AboutPage() {
-  const supabase = createPublicClient()
-  const { data } = await supabase.from("about").select("*").limit(1).single()
-  const about = data as About | null
+  const supabase = createPublicClient();
+  const { data } = await supabase.from("about").select("*").limit(1).single();
+  const about = data as About | null;
 
   if (!about) {
     return (
       <div className="mx-auto max-w-4xl px-4 py-16">
-        <h1 className="text-4xl font-bold tracking-tight text-foreground">About Me</h1>
+        <h1 className="text-4xl font-bold tracking-tight text-foreground">
+          About Me
+        </h1>
         <p className="mt-8 text-muted-foreground">
-          Profile information coming soon. Visit the admin panel to add your details.
+          Profile information coming soon. Visit the admin panel to add your
+          details.
         </p>
       </div>
-    )
+    );
   }
 
   return (
@@ -52,11 +55,15 @@ export default async function AboutPage() {
 
         {/* Content */}
         <div className="flex-1">
-          <h1 className="text-4xl font-bold tracking-tight text-foreground">{about.name}</h1>
+          <h1 className="text-4xl font-bold tracking-tight text-foreground">
+            {about.name}
+          </h1>
           <p className="mt-2 text-lg text-muted-foreground">{about.title}</p>
 
           <div className="mt-8 prose prose-neutral dark:prose-invert max-w-none">
-            <p className="text-foreground leading-relaxed whitespace-pre-wrap">{about.bio}</p>
+            <p className="text-foreground leading-relaxed whitespace-pre-wrap">
+              {about.bio}
+            </p>
           </div>
 
           {/* Social Links */}
@@ -107,5 +114,5 @@ export default async function AboutPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

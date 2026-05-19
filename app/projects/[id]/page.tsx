@@ -92,7 +92,7 @@ export default async function ProjectCaseStudyPage({ params }: Props) {
 
         {/* Tech Stack */}
         <div className="mt-6 flex flex-wrap gap-2">
-          {project.stack.map(tech => (
+          {(project.stack || []).map(tech => (
             <span
               key={tech}
               className="rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground"

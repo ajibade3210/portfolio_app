@@ -69,7 +69,7 @@ export default async function ProjectsPage() {
 
                   {/* Tech Stack */}
                   <div className="mt-4 flex flex-wrap gap-2">
-                    {project.stack.map(tech => (
+                    {(project.stack || []).map(tech => (
                       <span
                         key={tech}
                         className="rounded-full bg-secondary px-3 py-1 text-xs text-secondary-foreground"
