@@ -2,6 +2,8 @@ import { Mail } from "lucide-react";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { createPublicClient } from "@/lib/supabase/public";
 
+import AboutAvatar from "@/components/about-avatar";
+
 export const revalidate = 3600;
 
 import type { About } from "@/lib/types";
@@ -44,13 +46,7 @@ export default async function AboutPage() {
       <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-12">
         {/* Avatar */}
         {about.avatar_url && (
-          <div className="shrink-0">
-            <img
-              src={about.avatar_url}
-              alt={about.name}
-              className="size-32 rounded-full object-cover border-2 border-border"
-            />
-          </div>
+          <AboutAvatar avatarUrl={about.avatar_url} name={about.name} />
         )}
 
         {/* Content */}

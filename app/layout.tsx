@@ -46,6 +46,7 @@ export default function RootLayout({
     <html lang="en" className="bg-background" suppressHydrationWarning>
       <body
         className={`font-sans antialiased selection:bg-purple-600 selection:text-white ${geist.variable} ${geistMono.variable}`}
+        suppressHydrationWarning
       >
         <ThemeProvider
           attribute="class"
