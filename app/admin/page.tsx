@@ -1,16 +1,16 @@
-import { redirect } from "next/navigation"
-import { isAuthenticated, loginAction } from "@/lib/auth"
-import { LoginForm } from "./login-form"
+import { redirect } from "next/navigation";
+import { isAuthenticated, loginAction } from "@/lib/auth";
+import { LoginForm } from "./login-form";
 
 export const metadata = {
   title: "Admin Login | Portfolio",
-}
+};
 
 export default async function AdminLoginPage() {
-  const authenticated = await isAuthenticated()
-  
+  const authenticated = await isAuthenticated();
+
   if (authenticated) {
-    redirect("/admin/dashboard")
+    redirect("/admin/dashboard");
   }
 
   return (
@@ -23,5 +23,5 @@ export default async function AdminLoginPage() {
       </div>
       <LoginForm loginAction={loginAction} />
     </div>
-  )
+  );
 }

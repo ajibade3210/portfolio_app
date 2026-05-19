@@ -1,31 +1,31 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import type { About } from "@/lib/types"
-import { updateAbout } from "@/lib/actions"
+import { useState } from "react";
+import type { About } from "@/lib/types";
+import { updateAbout } from "@/lib/actions";
 
 interface AboutTabProps {
-  about: About | null
+  about: About | null;
 }
 
 export function AboutTab({ about }: AboutTabProps) {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
-  const [success, setSuccess] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   async function handleSubmit(formData: FormData) {
-    setLoading(true)
-    setError("")
-    setSuccess(false)
+    setLoading(true);
+    setError("");
+    setSuccess(false);
 
-    const result = await updateAbout(formData)
+    const result = await updateAbout(formData);
 
     if (result.error) {
-      setError(result.error)
+      setError(result.error);
     } else {
-      setSuccess(true)
+      setSuccess(true);
     }
-    setLoading(false)
+    setLoading(false);
   }
 
   return (
@@ -37,7 +37,9 @@ export function AboutTab({ about }: AboutTabProps) {
       <form action={handleSubmit} className="flex flex-col gap-5">
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1.5">Name *</label>
+            <label className="block text-sm font-medium text-foreground mb-1.5">
+              Name *
+            </label>
             <input
               name="name"
               required
@@ -46,7 +48,9 @@ export function AboutTab({ about }: AboutTabProps) {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1.5">Title *</label>
+            <label className="block text-sm font-medium text-foreground mb-1.5">
+              Title *
+            </label>
             <input
               name="title"
               required
@@ -58,7 +62,9 @@ export function AboutTab({ about }: AboutTabProps) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-foreground mb-1.5">Bio *</label>
+          <label className="block text-sm font-medium text-foreground mb-1.5">
+            Bio *
+          </label>
           <textarea
             name="bio"
             required
@@ -69,7 +75,9 @@ export function AboutTab({ about }: AboutTabProps) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-foreground mb-1.5">Avatar URL</label>
+          <label className="block text-sm font-medium text-foreground mb-1.5">
+            Avatar URL
+          </label>
           <input
             name="avatar_url"
             type="url"
@@ -83,7 +91,9 @@ export function AboutTab({ about }: AboutTabProps) {
 
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1.5">Email</label>
+            <label className="block text-sm font-medium text-foreground mb-1.5">
+              Email
+            </label>
             <input
               name="email"
               type="email"
@@ -92,7 +102,9 @@ export function AboutTab({ about }: AboutTabProps) {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1.5">GitHub URL</label>
+            <label className="block text-sm font-medium text-foreground mb-1.5">
+              GitHub URL
+            </label>
             <input
               name="github"
               type="url"
@@ -104,7 +116,9 @@ export function AboutTab({ about }: AboutTabProps) {
 
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1.5">LinkedIn URL</label>
+            <label className="block text-sm font-medium text-foreground mb-1.5">
+              LinkedIn URL
+            </label>
             <input
               name="linkedin"
               type="url"
@@ -113,7 +127,9 @@ export function AboutTab({ about }: AboutTabProps) {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1.5">Twitter URL</label>
+            <label className="block text-sm font-medium text-foreground mb-1.5">
+              Twitter URL
+            </label>
             <input
               name="twitter"
               type="url"
@@ -124,7 +140,11 @@ export function AboutTab({ about }: AboutTabProps) {
         </div>
 
         {error && <p className="text-sm text-destructive">{error}</p>}
-        {success && <p className="text-sm text-green-600">Profile updated successfully!</p>}
+        {success && (
+          <p className="text-sm text-green-600">
+            Profile updated successfully!
+          </p>
+        )}
 
         <div>
           <button
@@ -137,5 +157,5 @@ export function AboutTab({ about }: AboutTabProps) {
         </div>
       </form>
     </div>
-  )
+  );
 }

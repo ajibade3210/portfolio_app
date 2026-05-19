@@ -1,16 +1,31 @@
-import { ArrowUpRight } from "lucide-react"
-import { createClient } from "@/lib/supabase/server"
-import type { Blog } from "@/lib/types"
+import { ArrowUpRight } from "lucide-react";
+import { createPublicClient } from "@/lib/supabase/public";
+
+export const revalidate = 3600;
+
+import type { Blog } from "@/lib/types";
 
 export const metadata = {
   title: "Curiosity Made Me Ask | Portfolio",
   description: "Articles and topics that spark my curiosity",
-}
+  openGraph: {
+    title: "Curiosity Made Me Ask | Portfolio",
+    description: "Articles and topics that spark my curiosity",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Curiosity Made Me Ask | Portfolio",
+    description: "Articles and topics that spark my curiosity",
+  },
+};
 
 export default async function CuriosityPage() {
-  const supabase = await createClient()
-  const { data } = await supabase.from("blogs").select("*").order("published_at", { ascending: false })
-  const blogs = (data || []) as Blog[]
+  const supabase = createPublicClient();
+  const { data } = await supabase
+    .from("blogs")
+    .select("*")
+    .order("published_at", { ascending: false });
+  const blogs = (data || []) as Blog[];
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-16">
@@ -64,7 +79,7 @@ export default async function CuriosityPage() {
                   <span className="text-xs text-muted-foreground capitalize">
                     {blog.platform}
                   </span>
-                  <span className="text-xs text-muted-foreground">
+                  <span className="text-xs text-muted-foreground" suppressHydrationWarning>
                     {new Date(blog.published_at).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",

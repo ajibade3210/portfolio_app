@@ -1,19 +1,31 @@
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { createClient } from "@/lib/supabase/server"
-import type { Project, Blog, About } from "@/lib/types"
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { createPublicClient } from "@/lib/supabase/public";
+
+export const revalidate = 3600;
+
+import type { Project, Blog, About } from "@/lib/types";
 
 export default async function HomePage() {
-  const supabase = await createClient()
-  
-  const [projectsResult, blogsResult, aboutResult] = await Promise.all([
-    supabase.from("projects").select("*").eq("featured", true).limit(4).order("created_at", { ascending: false }),
-    supabase.from("blogs").select("*").limit(4).order("published_at", { ascending: false }),
-    supabase.from("about").select("*").limit(1).single()
-  ])
+  const supabase = createPublicClient();
 
-  const featuredProjects = (projectsResult.data || []) as Project[]
-  const recentBlogs = (blogsResult.data || []) as Blog[]
+  const [projectsResult, blogsResult, aboutResult] = await Promise.all([
+    supabase
+      .from("projects")
+      .select("*")
+      .eq("featured", true)
+      .limit(4)
+      .order("created_at", { ascending: false }),
+    supabase
+      .from("blogs")
+      .select("*")
+      .limit(4)
+      .order("published_at", { ascending: false }),
+    supabase.from("about").select("*").limit(1).single(),
+  ]);
+
+  const featuredProjects = (projectsResult.data || []) as Project[];
+  const recentBlogs = (blogsResult.data || []) as Blog[];
   const about = aboutResult.data as About | null;
 
   return (

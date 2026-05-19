@@ -1,15 +1,27 @@
 import { Mail } from "lucide-react"
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
-import { createClient } from "@/lib/supabase/server"
+import { createPublicClient } from "@/lib/supabase/public"
+
+export const revalidate = 3600;
+
 import type { About } from "@/lib/types"
 
 export const metadata = {
   title: "About | Portfolio",
   description: "Learn more about me and my journey",
+  openGraph: {
+    title: "About | Portfolio",
+    description: "Learn more about me and my journey",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About | Portfolio",
+    description: "Learn more about me and my journey",
+  },
 }
 
 export default async function AboutPage() {
-  const supabase = await createClient()
+  const supabase = createPublicClient()
   const { data } = await supabase.from("about").select("*").limit(1).single()
   const about = data as About | null
 
