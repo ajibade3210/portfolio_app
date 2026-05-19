@@ -80,15 +80,15 @@ export default async function ProjectsPage() {
                   </div>
 
                   {/* Links */}
-                  <div className="mt-5 flex flex-wrap items-center gap-4">
+                  <div className="mt-5 flex flex-wrap items-center gap-3">
                     {project.case_study &&
                       Object.keys(project.case_study).length > 0 && (
                         <Link
                           href={`/projects/${project.id}`}
-                          className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-foreground/80 transition-colors"
+                          className="group inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-xs hover:bg-primary/90 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
                         >
                           Case Study
-                          <ArrowRight className="size-3.5" />
+                          <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
                         </Link>
                       )}
                     {project.live_url && (
@@ -96,9 +96,9 @@ export default async function ProjectsPage() {
                         href={project.live_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                        className="group inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground shadow-2xs hover:bg-secondary hover:border-foreground/20 hover:shadow-xs hover:-translate-y-0.5 transition-all duration-200"
                       >
-                        <ExternalLink className="size-3.5" />
+                        <ExternalLink className="size-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                         Live Demo
                       </a>
                     )}
@@ -107,9 +107,9 @@ export default async function ProjectsPage() {
                         href={project.github_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                        className="group inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-4 py-2 text-xs font-semibold text-muted-foreground shadow-2xs hover:text-foreground hover:bg-secondary hover:border-foreground/20 hover:shadow-xs hover:-translate-y-0.5 transition-all duration-200"
                       >
-                        <FaGithub className="size-3.5" />
+                        <FaGithub className="size-3.5 group-hover:scale-110 transition-transform" />
                         Source
                       </a>
                     )}
