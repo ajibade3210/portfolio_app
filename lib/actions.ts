@@ -251,6 +251,7 @@ export async function updateAbout(formData: FormData) {
   const title = formData.get("title") as string;
   const bio = formData.get("bio") as string;
   const avatar_url = (formData.get("avatar_url") as string) || null;
+  const resume_url = (formData.get("resume_url") as string) || null;
   const email = (formData.get("email") as string) || null;
   const github = (formData.get("github") as string) || null;
   const linkedin = (formData.get("linkedin") as string) || null;
@@ -271,6 +272,7 @@ export async function updateAbout(formData: FormData) {
         title,
         bio,
         avatar_url,
+        resume_url,
         email,
         github,
         linkedin,
@@ -286,6 +288,7 @@ export async function updateAbout(formData: FormData) {
       title,
       bio,
       avatar_url,
+      resume_url,
       email,
       github,
       linkedin,
@@ -295,7 +298,9 @@ export async function updateAbout(formData: FormData) {
     if (error) return { error: error.message };
   }
 
+  revalidatePath("/", "layout");
   revalidatePath("/about");
   revalidatePath("/admin/dashboard");
   return { success: true };
 }
+

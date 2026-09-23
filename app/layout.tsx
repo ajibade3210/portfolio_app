@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navigation } from "@/components/navigation";
+import { createPublicClient } from "@/lib/supabase/public";
 import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
@@ -37,11 +38,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let resumeUrl: string | null = null;
+
+  try {
+    const supabase = createPublicClient();
+    const { data } = await supabase
+      .from("about")
+      .select("resume_url")
+      .limit(1)
+      .maybeSingle();
+
+    resumeUrl = data?.resume_url || null;
+  } catch {
+    // Falls back to default resume URL
+  }
+
   return (
     <html lang="en" className="bg-background" suppressHydrationWarning>
       <body
@@ -54,7 +70,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navigation />
+          <Navigation resumeUrl={resumeUrl} />
           <main className="min-h-[calc(100vh-4rem)]">{children}</main>
         </ThemeProvider>
         {process.env.NODE_ENV === "production" && <Analytics />}

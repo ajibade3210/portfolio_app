@@ -7,7 +7,7 @@ import { ThemeToggle } from "./theme-toggle";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
-const RESUME_URL =
+const DEFAULT_RESUME_URL =
   "https://res.cloudinary.com/dbyxa5mev/image/upload/v1779158727/001-Latest_Olaolu.Ajibade_Resume_hgpass.pdf";
 
 const navItems = [
@@ -17,9 +17,14 @@ const navItems = [
   { href: "/curiosity", label: "Curiosity Made Me Ask" },
 ];
 
-export function Navigation() {
+interface NavigationProps {
+  resumeUrl?: string | null;
+}
+
+export function Navigation({ resumeUrl }: NavigationProps = {}) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const activeResumeUrl = resumeUrl || DEFAULT_RESUME_URL;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-sm">
@@ -48,7 +53,7 @@ export function Navigation() {
             </Link>
           ))}
           <a
-            href={RESUME_URL}
+            href={activeResumeUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -95,7 +100,7 @@ export function Navigation() {
               </Link>
             ))}
             <a
-              href={RESUME_URL}
+              href={activeResumeUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm py-2 text-muted-foreground transition-colors hover:text-foreground"

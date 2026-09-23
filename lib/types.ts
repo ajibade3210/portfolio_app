@@ -4,6 +4,7 @@ export interface About {
   title: string;
   bio: string;
   avatar_url: string | null;
+  resume_url?: string | null;
   email: string | null;
   github: string | null;
   linkedin: string | null;

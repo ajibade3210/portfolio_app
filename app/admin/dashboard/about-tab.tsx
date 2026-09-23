@@ -86,6 +86,19 @@ export function AboutTab({ about }: AboutTabProps) {
           />
         </div>
 
+        <div>
+          <label className="block text-sm font-medium text-foreground mb-1.5">
+            Resume URL
+          </label>
+          <input
+            name="resume_url"
+            type="url"
+            defaultValue={about?.resume_url || ""}
+            placeholder="https://..."
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+          />
+        </div>
+
         <hr className="border-border" />
         <h3 className="text-md font-medium text-foreground">Social Links</h3>
 
